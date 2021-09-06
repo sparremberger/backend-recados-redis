@@ -4,6 +4,7 @@ import {
     getRecados,
     delRecado,
 } from "../controllers/recadoController";
+
 const router = express.Router();
 
 router.route("/recados").post(storeRecado);

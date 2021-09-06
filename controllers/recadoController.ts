@@ -8,7 +8,7 @@ const storeRecado = async (req: Request, res: Response) => {
     console.log(req.body);
 
     const entity = await new Recado(recado, detalhes).save();
-
+    // já põe no redis o recado logo de cara
     let redisRecado = {
         uid: entity.uid,
         data: {
@@ -31,8 +31,8 @@ const storeRecado = async (req: Request, res: Response) => {
 
 const getRecados = async (req: Request, res: Response) => {
     // verifica se existe no redis e puxa os dados de lá
-    let keys = await redis.keys("*");
-    let redisData: [] = [];
+    /*let keys = await redis.keys("*");
+    let redisData: any = [];
     for (let i = 0; i < keys.length; i++) {
         let data = await redis.get(keys[i]);
         data = JSON.parse(data);
@@ -49,10 +49,10 @@ const getRecados = async (req: Request, res: Response) => {
     if (redisData.length > 0) {
         return res.status(200).json(redisData);
     }
-
+*/
     // não tendo no redis, busca no DB e insere no redis em seguida
     const recados = await Recado.find();
-    const toRedis = recados.map((recado: any) => {
+    /*  const toRedis: any = recados.map((recado: any) => {
         let rRecado = {};
         rRecado = {
             uid: recado.uid,
@@ -74,9 +74,9 @@ const getRecados = async (req: Request, res: Response) => {
             "EX",
             43200
         );
-    }
+    }*/
 
-    return res.status(200).json(recados);
+    return res.status(200).json("q");
 };
 
 const delRecado = async (req: Request, res: Response) => {

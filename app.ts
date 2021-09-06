@@ -19,28 +19,4 @@ app.get("/", (req: Request, res: Response) => {
     res.send("API online!");
 });
 
-app.listen(process.env.PORT, () => {
-    return console.log(
-        `server is listening in ${process.env.NODE_ENV} mode on port ${process.env.PORT},`
-    );
-});
-
-/*function go() {
-    //createConnection()
-        //.then(async (connection) => {
-            console.log("Inserting a new user into the database...");
-            const rec = new Recado("kek", "wow");
-
-            await connection.manager.save(rec);
-            console.log("Saved a new user with id: " + rec.uid);
-
-            console.log("Loading users from the database...");
-            const recs = await connection.manager.find(Recado);
-            console.log("Loaded users: ", recs);
-
-            console.log(
-                "Here you can setup and run express/koa/any other framework."
-            );
-        })
-        .catch((error) => console.log(error));
-}*/
+export default app;
